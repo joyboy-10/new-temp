@@ -47,30 +47,89 @@ const Auth = ({ onLogin, setMessage }) => {
   };
 
   return (
-    <div style={{ padding: 24, maxWidth: 560, margin: '40px auto', fontFamily: 'Inter, system-ui, Arial' }}>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button onClick={() => setActiveTab('register')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e2e8f0', background: activeTab === 'register' ? '#0f172a' : 'white', color: activeTab === 'register' ? 'white' : '#0f172a' }}>Register</button>
-        <button onClick={() => setActiveTab('login')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e2e8f0', background: activeTab === 'login' ? '#0f172a' : 'white', color: activeTab === 'login' ? 'white' : '#0f172a' }}>Login</button>
+    <div style={{ padding: 24, maxWidth: 480, margin: '40px auto' }}>
+      <div className="sketch-header">
+        <h2 className="sketch-title" style={{ fontSize: 24 }}>Authentication</h2>
       </div>
+      
+      <div className="sketch-tabs">
+        <button 
+          onClick={() => setActiveTab('register')} 
+          className={`sketch-tab ${activeTab === 'register' ? 'active' : ''}`}
+        >
+          Register Institution
+        </button>
+        <button 
+          onClick={() => setActiveTab('login')} 
+          className={`sketch-tab ${activeTab === 'login' ? 'active' : ''}`}
+        >
+          Login
+        </button>
+      </div>
+      
       {activeTab === 'register' ? (
-        <form onSubmit={handleRegister} style={{ display: 'grid', gap: 12 }}>
-          <input placeholder="Institution name" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} />
-          <input placeholder="Location" value={formData.location} onChange={e => handleInputChange('location', e.target.value)} />
-          <input placeholder="Auditor password" type="password" value={formData.auditorPassword} onChange={e => handleInputChange('auditorPassword', e.target.value)} />
-          <button type="submit" style={{ background: 'black', color: 'white', padding: '10px 12px', borderRadius: 8, border: 0 }}>Register</button>
-        </form>
+        <div className="sketch-card">
+          <form onSubmit={handleRegister} className="sketch-form">
+            <input 
+              className="sketch-input" 
+              placeholder="Institution name" 
+              value={formData.name} 
+              onChange={e => handleInputChange('name', e.target.value)} 
+            />
+            <input 
+              className="sketch-input" 
+              placeholder="Location" 
+              value={formData.location} 
+              onChange={e => handleInputChange('location', e.target.value)} 
+            />
+            <input 
+              className="sketch-input" 
+              placeholder="Auditor password" 
+              type="password" 
+              value={formData.auditorPassword} 
+              onChange={e => handleInputChange('auditorPassword', e.target.value)} 
+            />
+            <button type="submit" className="sketch-btn sketch-btn-primary">
+              Register Institution
+            </button>
+          </form>
+        </div>
       ) : (
-        <form onSubmit={handleLogin} style={{ display: 'grid', gap: 12 }}>
-          <input placeholder="Institution ID" value={formData.institutionId} onChange={e => handleInputChange('institutionId', e.target.value)} />
-          <select value={formData.userType} onChange={e => handleInputChange('userType', e.target.value)}>
-            <option value="auditor">Auditor</option>
-            <option value="associate">Associate</option>
-          </select>
-          {formData.userType === 'associate' && (
-            <input placeholder="Associate ID" value={formData.associateId} onChange={e => handleInputChange('associateId', e.target.value)} />
-          )}
-          <input placeholder="Password" type="password" value={formData.loginPassword} onChange={e => handleInputChange('loginPassword', e.target.value)} />
-          <button type="submit" style={{ background: 'black', color: 'white', padding: '10px 12px', borderRadius: 8, border: 0 }}>Login</button>
+        <div className="sketch-card">
+          <form onSubmit={handleLogin} className="sketch-form">
+            <input 
+              className="sketch-input" 
+              placeholder="Institution ID" 
+              value={formData.institutionId} 
+              onChange={e => handleInputChange('institutionId', e.target.value)} 
+            />
+            <select 
+              className="sketch-input" 
+              value={formData.userType} 
+              onChange={e => handleInputChange('userType', e.target.value)}
+            >
+              <option value="auditor">Auditor</option>
+              <option value="associate">Associate</option>
+            </select>
+            {formData.userType === 'associate' && (
+              <input 
+                className="sketch-input" 
+                placeholder="Associate ID" 
+                value={formData.associateId} 
+                onChange={e => handleInputChange('associateId', e.target.value)} 
+              />
+            )}
+            <input 
+              className="sketch-input" 
+              placeholder="Password" 
+              type="password" 
+              value={formData.loginPassword} 
+              onChange={e => handleInputChange('loginPassword', e.target.value)} 
+            />
+            <button type="submit" className="sketch-btn sketch-btn-primary">
+              Login
+            </button>
+          </form>
         </form>
       )}
     </div>
