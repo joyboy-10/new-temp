@@ -40,7 +40,7 @@ const AssociateDashboard = ({ user, onCreateTransaction, onLogout }) => {
 
   const fetchData = async () => {
     try {
-      const summaryRes = await axios.get(`${BACKEND}/institutions/${user.institutionId}/summary`);
+      const summaryRes = await axios.get(\`${BACKEND}/institutions/${user.institutionId}/summary`);
       setInstitutionData(summaryRes.data);
       const historyRes = await axios.get(`${BACKEND}/transactions`);
       setTransactions(historyRes.data.transactions || []);

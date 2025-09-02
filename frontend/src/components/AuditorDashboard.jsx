@@ -59,7 +59,7 @@ const AuditorDashboard = ({ user, onCreateAssociate, onDeleteAssociate, onReview
   const fetchAll = async () => {
     try {
       const [summaryRes, txRes, assocRes] = await Promise.all([
-        axios.get(`${BACKEND}/institutions/${user.institutionId}/summary`),
+        axios.get(\`${BACKEND}/institutions/${user.institutionId}/summary`),
         axios.get(`${BACKEND}/transactions`),
         axios.get(`${BACKEND}/institutions/${user.institutionId}/associates`)
       ]);
